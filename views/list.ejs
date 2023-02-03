@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<%- include("header") -%>
+    <body>
+        <div class="box" id="heading"> <h1>
+            <%= whichday %>
+        </h1> </div>
+        <div class="box">
+            <% newtask.forEach(function(x){ %>
+                <div class="item">
+                    <form action="/delete" method="post">
+                        <input type="checkbox" name="checkbox" onChange="this.form.submit()" value="<%= x.name %>" >
+                        <input type="hidden" name="listName" value="<%= whichday %>"></input>
+                    </form>
+                    <p>
+                        <%= x.name %>
+                    </p>
+                </div>
+            <% }) %>
+
+            <!-- traditional for loop -->
+            <!-- <% for(var i=0;i<newtask.length;i++){ %>
+                <div class="item">
+                    <input type="checkbox">
+                <p>
+                    <%= newtask[i].name %>
+                </p> 
+                </div>                          
+            <% } %> -->
+            
+                <form action="/" class="item" method="post">
+                    <input type="text" placeholder="add a text" name="todo" autocomplete="off">
+                    <button type="submit" name="plusButton" value="<%= whichday%>">+</button>
+                </form>
+                      
+        </div>       
+    </body>
+</html>
